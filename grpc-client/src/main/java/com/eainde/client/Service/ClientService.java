@@ -17,12 +17,12 @@ public class ClientService {
     @GrpcClient("grpc-server")
     private HelloWorldServiceBlockingStub helloWorldServiceStub;
 
-    public String sayHello(String message) {
+    public HelloWorldResponse sayHello(String message) {
         HelloWorldRequest helloWorldRequest = HelloWorldRequest.newBuilder().setClientName("Client")
                 .setRequestMessage(message).build();
         HelloWorldResponse helloWorldResponse = this.helloWorldServiceStub.helloWorld(helloWorldRequest);
         logger.info(String.format("Server sent a response: %1s", helloWorldResponse.getResponseMessage()));
-        return helloWorldResponse.getResponseMessage();
+        return helloWorldResponse;
     }
 
 }

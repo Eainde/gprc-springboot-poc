@@ -17,7 +17,7 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping(value = "/{message}", produces = "application/json")
-    public ResponseEntity<String> findAll(@PathVariable("message") String message) {
+    public ResponseEntity<?> findAll(@PathVariable("message") String message) {
         return new ResponseEntity<>(clientService.sayHello(message), HttpStatus.OK);
     }
 }
