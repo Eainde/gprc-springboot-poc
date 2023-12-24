@@ -18,7 +18,7 @@ public class GreeterServer extends HelloWorldServiceGrpc.HelloWorldServiceImplBa
     @Override
     public void helloWorld(HelloWorldRequest request, StreamObserver<HelloWorldResponse> responseObserver) {
         HelloWorldResponse setResponseMessage = HelloWorldResponse.newBuilder()
-                .setResponseMessage("Hello " + request.getClientName() + " !!!").build();
+                .setResponseMessage(request.getClientName()+ " says "+ request.getRequestMessage() + " !!!").build();
         logger.info(String.format("%1s sent a message: %1s", request.getClientName(),request.getRequestMessage()));
         responseObserver.onNext(setResponseMessage);
         responseObserver.onCompleted();
